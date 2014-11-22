@@ -1,0 +1,8 @@
+tr.nested-fields
+  td 
+    = f.file_field :photo
+    = f.hidden_field :photo_cache, :value => f.object.photo_cache
+  td.thumb
+    - if f.object.photo.url.present?
+      = image_tag f.object.photo.url 
+  td= link_to_remove_association "remove", f

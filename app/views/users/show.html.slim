@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @user.name
+
+- @user.user_photos.each do |user_photo|
+  .thumb= image_tag user_photo.photo.url
+
+= link_to 'Edit', edit_user_path(@user)
+'|
+= link_to 'Back', users_path

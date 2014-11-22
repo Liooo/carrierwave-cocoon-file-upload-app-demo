@@ -1,0 +1,25 @@
+= form_for @user do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+
+
+  table.user-photo-form
+    thead
+      tr
+        td input 
+        td preview
+        td remove
+    tbody
+      = f.fields_for :user_photos do |photo|
+        = render 'user_photo_fields', f: photo
+  .links= link_to_add_association 'add a photo', f, :user_photos
+
+  .actions = f.submit 'Save'
